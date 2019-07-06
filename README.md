@@ -1,2 +1,2 @@
-# email-package-tracker
-Scan emails for package delivery links and keep track of delivery dates
+# email-event-tracker
+Scan emails for events and add them to your calendar
