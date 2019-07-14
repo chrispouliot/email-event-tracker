@@ -1,6 +1,7 @@
-import boto3
-
+import email
 import os
+
+import boto3
 
 from datetime import datetime
 
@@ -42,9 +43,10 @@ def handler(events: SESInput, context):
             print("No messageID found")
             continue
 
-        email = get_email(message_id, BUCKET_NAME, s3)
-        start_dt, end_dt, title = extract_data(email)
+        content = get_html_from_s3(message_id, BUCKET_NAME, s3)
+        start_dt, end_dt, title = extract_data(content)
         add_to_calendar(start_dt, end_dt, title)
+
     print("Exiting")
 
 
@@ -67,12 +69,15 @@ def is_subject_event_related(subject: str) -> bool:
     return any([k in subject.lower() for k in keywords])
 
 
-def get_email(key: str, bucket: str, s3: boto3.resources.base.ServiceResource) -> str:
+def get_html_from_s3(key: str, bucket: str, s3: boto3.resources.base.ServiceResource) -> str:
     obj = s3.Object(bucket, key)
-    return obj.get()['Body'].read().decode('utf-8')
+    raw_email = obj.get()['Body'].read().decode('utf-8')
+    # Turn raw email mimetipe to a mime message to extract content without headers
+    message = email.message_from_string(raw_email)
+    return message.get_payload()
 
 
-def extract_data(email: str) -> (datetime, datetime, str):
+def extract_data(html: str) -> (datetime, datetime, str):
     pass
 
 
