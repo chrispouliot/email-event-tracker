@@ -2,8 +2,9 @@ import email
 import os
 
 import boto3
-
 from datetime import datetime
+
+from parser import extract_data
 
 # Lambda scoped
 s3 = boto3.resource('s3')
@@ -44,8 +45,8 @@ def handler(events: SESInput, context):
             continue
 
         content = get_html_from_s3(message_id, BUCKET_NAME, s3)
-        start_dt, end_dt, title = extract_data(content)
-        add_to_calendar(start_dt, end_dt, title)
+        start_dt, title = extract_data(content)
+        add_to_calendar(start_dt, title)
 
     print("Exiting")
 
@@ -77,9 +78,5 @@ def get_html_from_s3(key: str, bucket: str, s3: boto3.resources.base.ServiceReso
     return message.get_payload()
 
 
-def extract_data(html: str) -> (datetime, datetime, str):
-    pass
-
-
-def add_to_calendar(start_dt: datetime, end_dt: datetime, title: str):
+def add_to_calendar(start_dt: datetime, title: str):
     pass
