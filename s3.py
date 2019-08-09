@@ -12,5 +12,6 @@ def get_message_from_s3(key: str, bucket: str) -> email.message:
     return message
 
 
-def save_message_to_s3():
-    pass
+def save_message_to_s3(key: str, bucket: str, data: str):
+    obj = s3.Object(bucket, key)
+    obj.put(data)
