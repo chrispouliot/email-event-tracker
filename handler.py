@@ -1,14 +1,12 @@
-import email
 import os
 
-import boto3
-from datetime import datetime
-
 from parser import extract_data
+from s3 import get_message_from_s3, save_message_to_s3
+from mime import add_event_to_email_mime
 
-# Lambda scoped
-s3 = boto3.resource('s3')
+
 BUCKET_NAME = os.environ.get('bucket_name')
+
 
 SESInput = {
     "Records": [{
@@ -44,9 +42,10 @@ def handler(events: SESInput, context):
             print("No messageID found")
             continue
 
-        content = get_html_from_s3(message_id, BUCKET_NAME, s3)
-        start_dt, title = extract_data(content)
-        add_to_calendar(start_dt, title)
+        mime_message = get_message_from_s3(message_id, BUCKET_NAME)
+        start_dt, title = extract_data(mime_message.get_payload())
+        event_mime_message = add_event_to_email_mime(start_dt, title, mime_message)
+        save_message_to_s3(event_mime_message)
 
     print("Exiting")
 
@@ -68,15 +67,3 @@ def is_subject_event_related(subject: str) -> bool:
         'reservation',
     ]
     return any([k in subject.lower() for k in keywords])
-
-
-def get_html_from_s3(key: str, bucket: str, s3: boto3.resources.base.ServiceResource) -> str:
-    obj = s3.Object(bucket, key)
-    raw_email = obj.get()['Body'].read().decode('utf-8')
-    # Turn raw email mimetipe to a mime message to extract content without headers
-    message = email.message_from_string(raw_email)
-    return message.get_payload()
-
-
-def add_to_calendar(start_dt: datetime, title: str):
-    pass

@@ -9,6 +9,7 @@ flake8 = "*"
 [packages]
 boto3 = "*"
 beautifulsoup4 = "*"
+icalendar = "*"
 
 [requires]
 python_version = "3.6"

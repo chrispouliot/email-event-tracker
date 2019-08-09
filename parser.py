@@ -23,10 +23,10 @@ months = [
 def extract_data(html: str) -> (datetime, str):
     soup = BeautifulSoup(html)
     text = soup.get_text()
-    # extract title of event
-    return find_date(text), "bla"
+    return find_date(text), soup.title
 
 
+# TODO: Refactor this to not be gross
 def find_date(text: str) -> datetime:
     text = text.lower()
     minute, hour, day, month, year = 0, 0, 0, 0, 0
