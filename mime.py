@@ -33,18 +33,17 @@ def add_event_to_email_mime(start_dt: datetime, title: str, ori_msg: Message) ->
         msg[key] = ori_msg.get(key)
 
     part_email = MIMEText(body, "html")
-    part_cal = MIMEText(calendar.to_ical(), 'calendar;method=REQUEST')
+    part_cal = MIMEText(str(calendar.to_ical()), 'calendar;method=REQUEST')
 
     msg_alternative = MIMEMultipart('alternative')
     msg.attach(msg_alternative)
 
     ical_atch = MIMEBase('application/ics', ' ;name="invite.ics"')
     ical_atch.set_payload(calendar.to_ical())
-    encode_base64(ical_atch)
+    print(ical_atch)
     ical_atch.add_header('Content-Disposition', 'attachment; filename="invite.ics"')
 
     eml_atch = MIMEBase('text/plain', '')
-    encode_base64(eml_atch)
     eml_atch.add_header('Content-Transfer-Encoding', "")
 
     msg_alternative.attach(part_email)

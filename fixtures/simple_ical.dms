@@ -1,0 +1,75 @@
+Return-Path: <chrispouliot@icloud.com>
+Received: from pv50p00im-ztdg10011901.me.com (pv50p00im-ztdg10011901.me.com [17.58.6.50])
+ by inbound-smtp.us-west-2.amazonaws.com with SMTP id mvak1j903rtpmll8ma598jo8430p2ojrpcgr5301
+ for me@chrispouliot.codes;
+ Sat, 10 Aug 2019 18:37:54 +0000 (UTC)
+X-SES-Spam-Verdict: PASS
+X-SES-Virus-Verdict: PASS
+Received-SPF: pass (spfCheck: domain of icloud.com designates 17.58.6.50 as permitted sender) client-ip=17.58.6.50; envelope-from=chrispouliot@icloud.com; helo=pv50p00im-ztdg10011901.me.com;
+Authentication-Results: amazonses.com;
+ spf=pass (spfCheck: domain of icloud.com designates 17.58.6.50 as permitted sender) client-ip=17.58.6.50; envelope-from=chrispouliot@icloud.com; helo=pv50p00im-ztdg10011901.me.com;
+ dkim=pass header.i=@icloud.com;
+ dmarc=pass header.from=icloud.com;
+X-SES-RECEIPT: AEFBQUFBQUFBQUFFMHdjZERtOXNuZlRldjdWKzlsOFBiM0lLaFlaWUZvaXRlS0NVU2JjNVd6bStpN2FQYVB4WVB4OTFmNVdoc0hvdU5VMGJXYVUyeVdHaDU1M2tUREQ3akRPTTRmVTVWOXEzb2RHcTdETjBGUHZERUlWYUdhUE9xcVhETWVDQnBZcDlOTW93Q0pOYW81cTAvN1lDSlNNeW83bkp4N0MvY2NTaEhkUXVjQVJHZlhwSjF1Y01DK1ZhbmlwRHI2SFBBTlN2UWcrN3JaVDl1VitrSUxLZEFIY3I5QWIwT2JVRUt5YUZ4VzBCc3BvVko5ODN4LzlWV2wvS3EramN3NWdEUW5tZlFFSVdjaGpoeTAvRmoyOXYrZDBRR3h3ZEF0UzZPU1dyMGRvTUk3YWNxcnc9PQ==
+X-SES-DKIM-SIGNATURE: a=rsa-sha256; q=dns/txt; b=INaJvYWGbdcSdhUl7BBFIiq/9Erz8l1qnA/cuTU46I0NKEMuleHSRzZfzpfuA5/Z0AB6VQzvLT4eIPeFEIQRxofvkrkmcODbuWEl9RKIrMnEwxqpM+uyjWLWs0K32+CijltrtNfghvC+Xgb0A9fd/dILgmwzTGlXvOwsZC/Uw5Q=; c=relaxed/simple; s=gdwg2y3kokkkj5a55z2ilkup5wp5hhxx; d=amazonses.com; t=1565462274; v=1; bh=mP87sBNkD4eJ3v4mooqeHeOijC+lvv5a7UuXml2r6Vs=; h=From:To:Cc:Bcc:Subject:Date:Message-ID:MIME-Version:Content-Type:X-SES-RECEIPT;
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=icloud.com;
+	s=1a1hai; t=1565462273;
+	bh=jszVeEuZGMUaIuuGYWoCsDy06Hy1ZRPfDCT3Rr90Kl8=;
+	h=From:Content-Type:Subject:Message-Id:Date:To;
+	b=PkmcFTd7+yfTeP4LljQP97tSjaVWdDVg4IIPMhKOvw4HPtXoU2KTqKO9VkCopBDt8
+	 SrbBhAdI0FkJai24VgnYeFGE8xP0HSU+/vwSPxXRBFL4Fqvt6S7jwzsAw5SCmw+7K2
+	 UzPfV4IZ9g28l0qq1ty0cOcV9MGpiFCOVmBUbzB4eAjgM24LNQ33FtQ199v4EdFTaa
+	 d373ST2h4wDaUwO6O+At1mxtYO4DT9wvovX88sD8ESvTJpXDhw6WZhVnjQPgkUw75G
+	 C9gn+3XUsqjAHTF4TCENSQrPZfg56HXd7tilkJ/N6wINRwyB8f9KtKoUNbJn53NS5a
+	 KgQqvXDfM3DAQ==
+Received: from [192.168.1.13] (d75-154-242-13.bchsia.telus.net [75.154.242.13])
+	by pv50p00im-ztdg10011901.me.com (Postfix) with ESMTPSA id 882498008E6
+	for <me@chrispouliot.codes>; Sat, 10 Aug 2019 18:37:53 +0000 (UTC)
+From: Chris Pouliot <chrispouliot@icloud.com>
+Content-Type: multipart/mixed;
+	boundary="Apple-Mail=_E7F9B781-1CCC-40D2-8B30-2EBDA71F45C3"
+Mime-Version: 1.0 (Mac OS X Mail 12.4 \(3445.104.11\))
+Subject: Appointment
+Message-Id: <2715B26B-1320-4596-B989-74FA4F0416C4@icloud.com>
+Date: Sat, 10 Aug 2019 11:37:52 -0700
+To: Chris Pouliot <me@chrispouliot.codes>
+X-Mailer: Apple Mail (2.3445.104.11)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-08-10_06:,,
+ signatures=0
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 suspectscore=0 malwarescore=0
+ phishscore=0 bulkscore=0 spamscore=0 clxscore=1015 mlxscore=0
+ mlxlogscore=876 adultscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.0.1-1812120000 definitions=main-1908100207
+
+
+--Apple-Mail=_E7F9B781-1CCC-40D2-8B30-2EBDA71F45C3
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain;
+	charset=us-ascii
+
+Your appointment is set for July 5th at 10am
+--Apple-Mail=_E7F9B781-1CCC-40D2-8B30-2EBDA71F45C3
+Content-Disposition: attachment;
+	filename=Appointment.ics
+Content-Type: text/calendar;
+	x-unix-mode=0644;
+	name="Appointment.ics"
+Content-Transfer-Encoding: quoted-printable
+
+BEGIN:VCALENDAR=0D=0AVERSION:2.0=0D=0APRODID:-//Apple=20Inc.//Mac=20OS=20=
+X=2010.14.6//EN=0D=0ACALSCALE:GREGORIAN=0D=0ABEGIN:VTIMEZONE=0D=0A=
+TZID:America/Whitehorse=0D=0ABEGIN:DAYLIGHT=0D=0ATZOFFSETFROM:-0800=0D=0A=
+RRULE:FREQ=3DYEARLY;BYMONTH=3D3;BYDAY=3D2SU=0D=0ADTSTART:20070311T020000=0D=
+=0ATZNAME:PDT=0D=0ATZOFFSETTO:-0700=0D=0AEND:DAYLIGHT=0D=0A=
+BEGIN:STANDARD=0D=0ATZOFFSETFROM:-0700=0D=0A=
+RRULE:FREQ=3DYEARLY;BYMONTH=3D11;BYDAY=3D1SU=0D=0A=
+DTSTART:20071104T020000=0D=0ATZNAME:PST=0D=0ATZOFFSETTO:-0800=0D=0A=
+END:STANDARD=0D=0AEND:VTIMEZONE=0D=0ABEGIN:VEVENT=0D=0A=
+CREATED:20190810T183706Z=0D=0AUID:B7B49FA4-D387-4C99-9880-88C6FF06978C=0D=
+=0ADTEND;TZID=3DAmerica/Whitehorse:20190817T100000=0D=0ATRANSP:OPAQUE=0D=0A=
+X-APPLE-TRAVEL-ADVISORY-BEHAVIOR:AUTOMATIC=0D=0ASUMMARY:Appointment=0D=0A=
+LAST-MODIFIED:20190810T183711Z=0D=0ADTSTAMP:20190810T183713Z=0D=0A=
+DTSTART;TZID=3DAmerica/Whitehorse:20190817T090000=0D=0ASEQUENCE:0=0D=0A=
+END:VEVENT=0D=0AEND:VCALENDAR=0D=0A=
+
+--Apple-Mail=_E7F9B781-1CCC-40D2-8B30-2EBDA71F45C3--

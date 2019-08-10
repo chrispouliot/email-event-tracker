@@ -1,12 +1,14 @@
 from datetime import datetime
 import unittest
-from unittest.mock import MagicMock
+from unittest import mock
 
-from handler import get_html_from_s3
+from handler import get_message_from_s3
 from parser import find_date
+from mime import add_event_to_email_mime
 
 
-class TestEmailRetrieval(unittest.TestCase):
+@mock.patch('s3.s3')
+class TestEmailParsing(unittest.TestCase):
 
     def setUp(self):
         with open('fixtures/simple1.dms', 'r') as file:
@@ -15,18 +17,29 @@ class TestEmailRetrieval(unittest.TestCase):
                 'expected': "This is a simple test for your appointment July 21st at 10am\n",
             }
 
-    def test_read(self):
+    def test_read(self, mock_s3):
         expected = self.simple_email_dict['expected']
         test_content = self.simple_email_dict['content']
 
-        mock_s3 = MagicMock()
         mock_s3.Object.return_value \
             .get.return_value.__getitem__.return_value \
             .read.return_value \
             .decode.return_value = test_content
 
-        returned_value = get_html_from_s3("key", "bucket", mock_s3)
-        self.assertEqual(returned_value, expected)
+        returned_value = get_message_from_s3("key", "bucket")
+        self.assertEqual(returned_value.get_payload(), expected)
+
+    def test_create_mime(self, mock_s3):
+        test_content = self.simple_email_dict['content']
+
+        mock_s3.Object.return_value \
+            .get.return_value.__getitem__.return_value \
+            .read.return_value \
+            .decode.return_value = test_content
+
+        original_mime = get_message_from_s3("key", "bucket")
+        calendar_mime = add_event_to_email_mime(datetime.now(), "title", original_mime)
+        self.assertEqual(calendar_mime.as_string(), "bla")
 
 
 class TestDateParsing(unittest.TestCase):
