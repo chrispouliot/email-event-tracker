@@ -9,17 +9,16 @@ from mime import add_event_to_email_mime
 
 @mock.patch('s3.s3')
 class TestEmailParsing(unittest.TestCase):
+    simple_email_dict = {}
 
     def setUp(self):
-        with open('fixtures/simple1.dms', 'r') as file:
-            self.simple_email_dict = {
-                'content': file.read(),
-                'expected': "This is a simple test for your appointment July 21st at 10am\n",
-            }
+        for fname in ['simple1.dms', 'simple_with_ics.dms', 'simple_without_ics.dms']:
+            with open(f'fixtures/{fname}', 'r') as file:
+                self.simple_email_dict[fname] = file.read(),
 
     def test_read(self, mock_s3):
-        expected = self.simple_email_dict['expected']
-        test_content = self.simple_email_dict['content']
+        expected = "This is a simple test for your appointment July 21st at 10am\n"
+        test_content = self.simple_email_dict['simple1.dms']
 
         mock_s3.Object.return_value \
             .get.return_value.__getitem__.return_value \
@@ -30,7 +29,8 @@ class TestEmailParsing(unittest.TestCase):
         self.assertEqual(returned_value.get_payload(), expected)
 
     def test_create_mime(self, mock_s3):
-        test_content = self.simple_email_dict['content']
+        test_content = self.simple_email_dict['simple_without_ics.dms']
+        expected_content = self.simple_email_dict['simple_with_ics.dms']
 
         mock_s3.Object.return_value \
             .get.return_value.__getitem__.return_value \
@@ -39,7 +39,7 @@ class TestEmailParsing(unittest.TestCase):
 
         original_mime = get_message_from_s3("key", "bucket")
         calendar_mime = add_event_to_email_mime(datetime.now(), "title", original_mime)
-        self.assertEqual(calendar_mime.as_string(), "bla")
+        self.assertEqual(calendar_mime.as_string(), expected_content.as_string())
 
 
 class TestDateParsing(unittest.TestCase):

@@ -1,0 +1,45 @@
+Return-Path: <chrispouliot@icloud.com>
+Received: from pv50p00im-ztdg10021201.me.com (pv50p00im-ztdg10021201.me.com [17.58.6.45])
+ by inbound-smtp.us-west-2.amazonaws.com with SMTP id btnt9j6gc40nr47dbb742iea534pj53bv9sull01
+ for me@chrispouliot.codes;
+ Sun, 11 Aug 2019 19:42:54 +0000 (UTC)
+X-SES-Spam-Verdict: PASS
+X-SES-Virus-Verdict: PASS
+Received-SPF: pass (spfCheck: domain of icloud.com designates 17.58.6.45 as permitted sender) client-ip=17.58.6.45; envelope-from=chrispouliot@icloud.com; helo=pv50p00im-ztdg10021201.me.com;
+Authentication-Results: amazonses.com;
+ spf=pass (spfCheck: domain of icloud.com designates 17.58.6.45 as permitted sender) client-ip=17.58.6.45; envelope-from=chrispouliot@icloud.com; helo=pv50p00im-ztdg10021201.me.com;
+ dkim=pass header.i=@icloud.com;
+ dmarc=pass header.from=icloud.com;
+X-SES-RECEIPT: AEFBQUFBQUFBQUFFQ2dFSDhqMm00cFpWbGdwemNsajE2TVJROERZTzJ1TXUrSEVxQjJrRXZxUCsydmd6UWpzejluMmNQOUJCa005NTJpU0VWaEpnb2VnNzNFMlZVT280c1lReTFRcWlOTjFxMFBhNURuMmVSeE1jZjA2TlVjbkxBSlB2VWllOSs0TnRyQkNHTkpLVkxRbHA3NUd5VmxZZ1MzREk0U1J4OUI1M0hKOE83SllhOUtVREVSWEI4VzNLSzQrRkdwNzdjTmpoeis2a2w4NDZkdHp5VTBRczFDTWpCTURVU3VqTVIyWTRkVGF4L1FyaGNGYldmNHVzeVluY1dIMVE1cEpZa3ljMUFBOVlyNDNtYXUzeEFWMjJEeEp1Q0VQZUV6bVBBeUNhL2JJcHg5T0pHaGc9PQ==
+X-SES-DKIM-SIGNATURE: a=rsa-sha256; q=dns/txt; b=Y4n/h05xArJzsbqaMlXDla20PfJKh6Br3ui5VxlMpuBZfVazVzLOLPKo8NmNS6Z23jZsD89NhWILaNdTH42j/NfWImQGT61aGNR+TAKqpPT8NvYI6wlNdLb70WSR4hTV5pzKVSp+GcPXNpyhdiRxw4clrqtVhK7mZ7RRRRzdE94=; c=relaxed/simple; s=gdwg2y3kokkkj5a55z2ilkup5wp5hhxx; d=amazonses.com; t=1565552575; v=1; bh=q98WdW5wpcKwsx2ZzvHc+ASIKix0kmZ88nSLI8xzFOI=; h=From:To:Cc:Bcc:Subject:Date:Message-ID:MIME-Version:Content-Type:X-SES-RECEIPT;
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=icloud.com;
+	s=1a1hai; t=1565552574;
+	bh=q98WdW5wpcKwsx2ZzvHc+ASIKix0kmZ88nSLI8xzFOI=;
+	h=From:Content-Type:Subject:Message-Id:Date:To;
+	b=eYbT+eCoQI7oufn+cYq8WlyhEhGeu6/BsRjdkoDOs7SIp0dGvNU/tzTARivY1jUlb
+	 qDcm1+e6kZtLkyDFDDlKM7yIBnt4Rl6NEXs5RuDGILK46NsBhpb/2JM/oJOeAyJ173
+	 qpKBgJJlGAZ0ZzKX9YsKmxkvOMuAXGNxCEPmM6w7YUX5oM7tmnRb0bz5b7HEA+ryrq
+	 Yerv2sF4Pk+kt8iqQ5pys2O/gfRNi2/6PakPDzyjB4N+GDzdKbpaqpHkTpN3AOSc1n
+	 vSMSTDPm+gQGCBcF8GRc5ad7iHXchAN0T2CjdJzV/oYwBQEbE27ETPyp1ZpV+Vfsj8
+	 Bsx5kI6P/XtLw==
+Received: from [192.168.1.13] (d75-154-242-13.bchsia.telus.net [75.154.242.13])
+	by pv50p00im-ztdg10021201.me.com (Postfix) with ESMTPSA id 454A2A404B5
+	for <me@chrispouliot.codes>; Sun, 11 Aug 2019 19:42:54 +0000 (UTC)
+From: Chris Pouliot <chrispouliot@icloud.com>
+Content-Type: text/plain;
+	charset=us-ascii
+Content-Transfer-Encoding: 7bit
+Mime-Version: 1.0 (Mac OS X Mail 12.4 \(3445.104.11\))
+Subject: appointment
+Message-Id: <A0319A61-7417-4B8E-8A9A-98ED358C6C48@icloud.com>
+Date: Sun, 11 Aug 2019 12:42:53 -0700
+To: Chris Pouliot <me@chrispouliot.codes>
+X-Mailer: Apple Mail (2.3445.104.11)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-08-11_09:,,
+ signatures=0
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 suspectscore=0 malwarescore=0
+ phishscore=0 bulkscore=0 spamscore=0 clxscore=1015 mlxscore=0
+ mlxlogscore=382 adultscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.0.1-1812120000 definitions=main-1908110219
+
+August 17th at 9am
