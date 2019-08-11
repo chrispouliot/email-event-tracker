@@ -45,7 +45,7 @@ def handler(events: SESInput, context):
         mime_message = get_message_from_s3(message_id, BUCKET_NAME)
         start_dt, title = extract_data(mime_message.get_payload())
         event_mime_message = add_event_to_email_mime(start_dt, title, mime_message)
-        save_message_to_s3(event_mime_message)
+        save_message_to_s3(message_id, BUCKET_NAME, event_mime_message)
 
     print("Exiting")
 
